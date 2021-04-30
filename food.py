@@ -31,5 +31,3 @@ class Food:
         random_y = r.randrange(-280, 260, 20)
 
         self.food_piece.goto(random_x, random_y)
-
-# TODO: 1. Build the main food spawn for the snake
