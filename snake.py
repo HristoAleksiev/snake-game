@@ -3,10 +3,13 @@ UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+MOVEMENT_SPEED = 20
 
 
 class Snake:
-    snake_parts = []
+
+    def __init__(self):
+        self.snake_parts = []
 
 # TODO 3. The snake should become bigger when ingesting food.
     def create_snake(self):
@@ -19,19 +22,19 @@ class Snake:
 
     def right(self):
         if self.snake_parts[0].heading() != LEFT:
-            self.snake_parts[0].setheading(0)
+            self.snake_parts[0].setheading(RIGHT)
 
     def left(self):
         if self.snake_parts[0].heading() != RIGHT:
-            self.snake_parts[0].setheading(180)
+            self.snake_parts[0].setheading(LEFT)
 
     def up(self):
         if self.snake_parts[0].heading() != DOWN:
-            self.snake_parts[0].setheading(90)
+            self.snake_parts[0].setheading(UP)
 
     def down(self):
         if self.snake_parts[0].heading() != UP:
-            self.snake_parts[0].setheading(270)
+            self.snake_parts[0].setheading(DOWN)
 
 # TODO 2. Collision is missing for body and food collision.
 # TODO 4. Collision happening does not end the game appropriately, make more user friendly
@@ -51,4 +54,4 @@ class Snake:
         for part_num in range(len(self.snake_parts) - 1, 0, -1):
             self.snake_parts[part_num].goto(self.snake_parts[part_num - 1].xcor(),
                                             self.snake_parts[part_num - 1].ycor())
-        self.snake_parts[0].forward(20)
+        self.snake_parts[0].forward(MOVEMENT_SPEED)
