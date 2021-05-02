@@ -1,4 +1,5 @@
 from turtle import Turtle
+
 UP = 90
 DOWN = 270
 LEFT = 180
@@ -35,8 +36,8 @@ class Snake:
         if self.snake_parts[0].heading() != UP:
             self.snake_parts[0].setheading(DOWN)
 
-# TODO 2. Collision is missing for body collision.
-# TODO 4. Collision happening does not end the game appropriately, make more user friendly
+    # TODO 2. Collision is missing for body collision.
+    # TODO 4. Collision happening does not end the game appropriately, make more user friendly
     def check_collision(self, screen):
         if self.snake_parts[0].position()[0] >= screen.window_width() / 2 - 10:
             return True
@@ -71,7 +72,6 @@ class Snake:
             snake_piece.setx(current_last_piece.xcor())
             snake_piece.setx(current_last_piece.ycor() + 20)
             self.snake_parts.append(snake_piece)
-
 
     def move(self):
         for part_num in range(len(self.snake_parts) - 1, 0, -1):
