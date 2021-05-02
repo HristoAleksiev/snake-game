@@ -1,5 +1,4 @@
 from turtle import Turtle, Screen
-import random as r
 import time as t
 from snake import Snake
 from score import ScoreBoard

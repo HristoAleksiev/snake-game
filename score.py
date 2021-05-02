@@ -8,6 +8,7 @@ class ScoreBoard:
         self.player_score = 0
         self.text_turtle = Turtle()
         self.screen = Screen()
+        # to be a read/write from a text file and allow high scores to transcend to other runs of the program
         self.high_scores = high_scores
 
     def display_score(self):
@@ -31,6 +32,7 @@ class ScoreBoard:
             self.order_high_scores(player_name)
         self.display_high_scores()
 
+    # this is weird, could be written cleaner
     def order_high_scores(self, name):
         x = 0
         for score in range(len(self.high_scores) - 1, -1, -1):
