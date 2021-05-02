@@ -41,7 +41,6 @@ while not has_game_ended():
         score.update_score()
         snake.grow_snake()
 
-    # onkey() or onkeypress() ??
     if scr.onkeypress(fun=snake.right, key="Right") or scr.onkeypress(fun=snake.left, key="Left") \
             or scr.onkeypress(fun=snake.up, key="Up") or scr.onkeypress(fun=snake.down, key="Down") \
             or scr.onkeypress(fun=scr.exitonclick, key="e"):
