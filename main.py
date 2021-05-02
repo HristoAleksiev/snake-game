@@ -39,11 +39,11 @@ while not has_game_ended():
     snake.move()
 
 # onkey() or onkeypress() ??
-    scr.onkey(fun=snake.right, key="Right")
-    scr.onkey(fun=snake.left, key="Left")
-    scr.onkey(fun=snake.up, key="Up")
-    scr.onkey(fun=snake.down, key="Down")
-    scr.onkey(fun=scr.exitonclick, key="e")
+    scr.onkeypress(fun=snake.right, key="Right")
+    scr.onkeypress(fun=snake.left, key="Left")
+    scr.onkeypress(fun=snake.up, key="Up")
+    scr.onkeypress(fun=snake.down, key="Down")
+    scr.onkeypress(fun=scr.exitonclick, key="e")
 
     t.sleep(0.1)
 
