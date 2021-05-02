@@ -37,7 +37,6 @@ class Snake:
             self.snake_parts[0].setheading(DOWN)
 
     # TODO 2. Collision is missing for body collision.
-    # TODO 4. Collision happening does not end the game appropriately, make more user friendly
     def check_collision(self, screen):
         if self.snake_parts[0].position()[0] >= screen.window_width() / 2 - 10:
             return True

@@ -15,6 +15,9 @@ scr.listen()
 snake = Snake()
 snake.create_snake()
 
+assist_turtle = Turtle()
+assist_turtle.hideturtle()
+
 score = ScoreBoard()
 score.display_score()
 
@@ -25,7 +28,11 @@ def has_game_ended():
     if scr.onkeypress(fun=scr.exitonclick, key="e"):
         return True
     else:
-        return snake.check_collision(scr)
+        if snake.check_collision(scr):
+            assist_turtle.color("white")
+            assist_turtle.write(arg=f" Game Over!\nFinal score: {score.player_score}", align="center",
+                                font=("Arial", 16, "normal"))
+            return True
 
 
 while not has_game_ended():
