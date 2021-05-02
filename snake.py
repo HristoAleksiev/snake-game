@@ -41,14 +41,26 @@ class Snake:
             if round(self.snake_parts[0].position()[0]) == round(self.snake_parts[parts].position()[0]) and \
                     round(self.snake_parts[0].position()[1]) == round(self.snake_parts[parts].position()[1]):
                 return True
-            # Bug fix: the collision check happens after the snake has taken its next move,
-            # but has not yet been refreshed on screen. We check if the head collides with the position the last
-            # snake_part is coming from as well.
-            elif round(self.snake_parts[0].position()[0]) == round(self.snake_parts[parts].position()[0] - 20) and \
-                    round(self.snake_parts[0].position()[1]) == round(self.snake_parts[parts].position()[1] - 20):
-                return True
+        # Bug fix: the collision check happens after the snake has taken its next move,
+        # but has not yet been refreshed on screen. We check if the head collides with the position the last
+        # snake_part is coming from as well.
+        if self.snake_parts[len(self.snake_parts) - 1].heading() == RIGHT \
+                and round(self.snake_parts[0].position()[0]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[0] - 20)\
+                and round(self.snake_parts[0].position()[1]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[1]):
+            return True
+        elif self.snake_parts[len(self.snake_parts) - 1].heading() == LEFT \
+                and round(self.snake_parts[0].position()[0]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[0] + 20)\
+                and round(self.snake_parts[0].position()[1]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[1]):
+            return True
+        elif self.snake_parts[len(self.snake_parts) - 1].heading() == UP \
+                and round(self.snake_parts[0].position()[0]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[0])\
+                and round(self.snake_parts[0].position()[1]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[1] - 20):
+            return True
+        elif self.snake_parts[len(self.snake_parts) - 1].heading() == DOWN \
+                and round(self.snake_parts[0].position()[0]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[0])\
+                and round(self.snake_parts[0].position()[1]) == round(self.snake_parts[len(self.snake_parts) - 1].position()[1] + 20):
+            return True
 
-    # TODO 2. Collision is missing for body collision.
     def check_collision(self, screen):
         if self.snake_parts[0].position()[0] >= screen.window_width() / 2 - 10:
             return True
@@ -87,7 +99,9 @@ class Snake:
             self.snake_parts.append(snake_piece)
 
     def move(self):
+        # missing to change the heading of each part introduced a nasty bug with collision detection.
         for part_num in range(len(self.snake_parts) - 1, 0, -1):
             self.snake_parts[part_num].goto(self.snake_parts[part_num - 1].xcor(),
                                             self.snake_parts[part_num - 1].ycor())
+            self.snake_parts[part_num].setheading(self.snake_parts[part_num - 1].heading())
         self.snake_parts[0].forward(MOVEMENT_SPEED)

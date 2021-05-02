@@ -41,15 +41,14 @@ while not has_game_ended():
         score.update_score()
         snake.grow_snake()
 
-# onkey() or onkeypress() ??
-    scr.onkeypress(fun=snake.right, key="Right")
-    scr.onkeypress(fun=snake.left, key="Left")
-    scr.onkeypress(fun=snake.up, key="Up")
-    scr.onkeypress(fun=snake.down, key="Down")
-    scr.onkeypress(fun=scr.exitonclick, key="e")
-
+    # onkey() or onkeypress() ??
+    if scr.onkeypress(fun=snake.right, key="Right") or scr.onkeypress(fun=snake.left, key="Left") \
+            or scr.onkeypress(fun=snake.up, key="Up") or scr.onkeypress(fun=snake.down, key="Down") \
+            or scr.onkeypress(fun=scr.exitonclick, key="e"):
+        pass
     snake.move()
     scr.update()
+
     t.sleep(0.1)
 
 scr.exitonclick()
