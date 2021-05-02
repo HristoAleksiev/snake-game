@@ -13,7 +13,7 @@ class Snake:
         self.snake_parts = []
 
     def create_snake(self):
-        for _ in range(0, 20):
+        for _ in range(0, 3):
             self.snake_parts.append(Turtle("square"))
             self.snake_parts[_].penup()
             self.snake_parts[_].color("white")
