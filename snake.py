@@ -13,7 +13,7 @@ class Snake:
         self.snake_parts = []
 
     def create_snake(self):
-        for _ in range(0, 3):
+        for _ in range(0, 20):
             self.snake_parts.append(Turtle("square"))
             self.snake_parts[_].penup()
             self.snake_parts[_].color("white")
@@ -36,6 +36,18 @@ class Snake:
         if self.snake_parts[0].heading() != UP:
             self.snake_parts[0].setheading(DOWN)
 
+    def collision_in_body(self):
+        for parts in range(1, len(self.snake_parts)):
+            if round(self.snake_parts[0].position()[0]) == round(self.snake_parts[parts].position()[0]) and \
+                    round(self.snake_parts[0].position()[1]) == round(self.snake_parts[parts].position()[1]):
+                return True
+            # Bug fix: the collision check happens after the snake has taken its next move,
+            # but has not yet been refreshed on screen. We check if the head collides with the position the last
+            # snake_part is coming from as well.
+            elif round(self.snake_parts[0].position()[0]) == round(self.snake_parts[parts].position()[0] - 20) and \
+                    round(self.snake_parts[0].position()[1]) == round(self.snake_parts[parts].position()[1] - 20):
+                return True
+
     # TODO 2. Collision is missing for body collision.
     def check_collision(self, screen):
         if self.snake_parts[0].position()[0] >= screen.window_width() / 2 - 10:
@@ -45,6 +57,8 @@ class Snake:
         elif self.snake_parts[0].position()[1] >= screen.window_height() / 2 - 20:
             return True
         elif self.snake_parts[0].position()[1] <= (screen.window_height() / 2 - 10) * -1:
+            return True
+        elif self.collision_in_body():
             return True
         else:
             return False

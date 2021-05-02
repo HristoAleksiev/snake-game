@@ -36,14 +36,10 @@ def has_game_ended():
 
 
 while not has_game_ended():
-    scr.update()
-
     if food.is_eaten(snake):
         food.recreate()
         score.update_score()
         snake.grow_snake()
-
-    snake.move()
 
 # onkey() or onkeypress() ??
     scr.onkeypress(fun=snake.right, key="Right")
@@ -52,6 +48,8 @@ while not has_game_ended():
     scr.onkeypress(fun=snake.down, key="Down")
     scr.onkeypress(fun=scr.exitonclick, key="e")
 
+    snake.move()
+    scr.update()
     t.sleep(0.1)
 
 scr.exitonclick()
