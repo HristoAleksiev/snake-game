@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 import time as t
 from snake import Snake
 from score import ScoreBoard

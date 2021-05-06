@@ -23,6 +23,3 @@ class HighScores:
                 file.write(f"{_}\n")
 
         print(high_scores)
-
-
-

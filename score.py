@@ -36,7 +36,6 @@ class ScoreBoard:
 
     # this is weird, could be written cleaner
     def order_high_scores(self, name):
-        x = 0
         for score in range(len(self.high_scores) - 1, -1, -1):
             if self.high_scores[score][1] < self.player_score:
                 x = self.high_scores[score]
